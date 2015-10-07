@@ -1,7 +1,9 @@
 require "tenantify/sidekiq/version"
 
+require "tenantify/sidekiq/middlewares/client"
+require "tenantify/sidekiq/middlewares/server"
+
 module Tenantify
   module Sidekiq
-    # Your code goes here...
   end
 end
