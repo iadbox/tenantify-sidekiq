@@ -1,6 +1,6 @@
 # Tenantify::Sidekiq
 
-TODO: Write a gem description
+This gem provides a client and a server middlewares for Sidekiq to work with the tenantify gem
 
 ## Installation
 
@@ -14,13 +14,25 @@ And then execute:
 
     $ bundle
 
-Or install it yourself as:
-
-    $ gem install tenantify-sidekiq
-
 ## Usage
 
-TODO: Write usage instructions here
+Just add the client and the server middlewares to its respective middleware chains:
+
+```ruby
+require 'tenantify-sidekiq'
+
+Sidekiq.configure_client do |config|
+  config.client_middleware do |chain|
+    chain.add Tenantify::Sidekiq::Middlewares::Client
+  end
+end
+
+Sidekiq.configure_server do |config|
+  config.server_middleware do |chain|
+    chain.add Tenantify::Sidekiq::Middlewares::Server
+  end
+end
+```
 
 ## Contributing
 
